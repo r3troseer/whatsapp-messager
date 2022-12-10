@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="text-center">
+    <div class="h1">
+        Whatsapp Messager
+
+    </div>
+</section>
+<section>
+    <div class="h2">Direct Message</div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+
+                    <th scope="col">Phone No.</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Interval</th>
+                    <th scope="col">status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for direct in direct_message %}
+                <tr>
+                    <th scope="row">{{direct.phone_no}}</th>
+                    <td>{{direct.message}}</td>
+                    <td>{{direct.time}}</td>
+                    <td>{{direct.date}}</td>
+                    <td>{{direct.task.interval}}</td>
+                    <td>{{direct.status}}</td>
+                    <td> </td>
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    <form class="" method="POST">
+                        {% csrf_token %}
+                        <td>
+                            <div class="form-floating">
+                                {{dform.phone_no}}
+                                <label for="floatingInput">Recipient Phone Number:</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-floating">
+                                {{dform.message}}
+                                <label for="floatingTextarea">Message:</label>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-floating mb-3">
+                                {{dform.time}}
+                                <label for="floatingInput">Time</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                {{dform.date}}
+                                <label for="floatingInput">Date</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-floating">
+
+                                {{dform.intervals}}
+                                <label for="floatingSelect">intervals:</label>
+                            </div>
+
+                        </td>
+                        <td>
+                            <div class="form-floating">
+                                {{dform.status}}
+                                <label for="floatingSelect">status:</label>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group align-items-center">
+                                <button type="submit" class="save btn btn-outline-primary" value="direct send"
+                                    name="direct">Send</button>
+                                <a href="{% url 'direct' %}" type="button" class="btn btn-primary">+</a>
+                            </div>
+                        </td>
+                    </form>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section>
+    <div class="h2">Group Message</div>
+    <div>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+
+                    <th scope="col">Group ID</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Interval</th>
+                    <th scope="col">status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for group in group_message %}
+                <tr>
+                    <th scope="row">{{group.group_id}}</th>
+                    <td>{{group.message}}</td>
+                    <td>{{group.time}}</td>
+                    <td>{{group.date}}</td>
+                    <td>{{group.task.interval}}</td>
+                    <td>{{group.status}}</td>
+                    <td> </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <form class="" method="POST">
+                        {% csrf_token %}
+                        <td>
+                            <div class="form-floating">
+                                {{gform.group_id}}
+                                <label for="floatingInput">Recipient Group ID:</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-floating">
+                                {{gform.message}}
+                                <label for="floatingTextarea">Message:</label>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-floating mb-3">
+                                {{gform.time}}
+                                <label for="floatingInput">Time</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                {{gform.date}}
+                                <label for="floatingInput">Date</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-floating">
+
+                                {{gform.intervals}}
+                                <label for="floatingSelect">intervals:</label>
+                            </div>
+
+                        </td>
+                        <td>
+                            <div class="form-floating">
+                                {{gform.status}}
+                                <label for="floatingSelect">status:</label>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group align-items-center">
+                                <button type="submit" class="save btn btn-outline-primary" value="group send"
+                                    name="group">Send</button>
+                                <a href="{% url 'group' %}" type="button" class="btn btn-primary">+</a>
+                            </div>
+                        </td>
+                    </form>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

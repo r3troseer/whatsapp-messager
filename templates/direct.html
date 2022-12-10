@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" class="col-9 text-center mx-auto pt-5 align-items-center justify-content-center">
+    {% csrf_token %}
+    <!-- {{form.as_table}} -->
+    <div class="form-floating mb-3">
+        {{form.phone_no.errors}}
+        {{form.phone_no}}
+        <label for="floatingInput">Recipient Phone Number:</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.message}}
+        <label for="floatingTextarea">Message:</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.time}}
+        <label for="floatingInput">Time</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.date}}
+        <label for="floatingInput">Date</label>
+    </div>
+    <div class="row">
+        <div class="form-floating mb-3 col-6">
+            {{form.interval}}
+            <label for="floatingInput">Interval</label>
+        </div>
+        <div class="form-floating mb-3 col-6">
+            {{form.interval_period}}
+            <label for="floatingSelect">Interval period</label>
+        </div>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.wait_time}}
+        <label for="floatingInput">Delivery wait time</label>
+    </div>
+    <div class="row">
+        <div class="form-floating mb-3 col-6">
+            {{form.tab_close}}
+            <label for="floatingSelect">Tab Close</label>
+        </div>
+        <div class="form-floating mb-3 col-6">
+            {{form.close_time}}
+            <label for="floatingInput">Delivery wait time</label>
+        </div>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.one_off}}
+        <label for="floatingSelect">One_off</label>
+    </div>
+    <button type="submit" class="save btn btn-primary" value="submit">Submit</button>
+</form>
+{% endblock %}
