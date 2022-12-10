@@ -20,7 +20,9 @@ class MessageStatus(models.TextChoices):
     active = "Active"
     disabled = "Disabled"
 
-BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
+
+BOOL_CHOICES = ((True, "Yes"), (False, "No"))
+
 
 class message(models.Model):
     message = models.CharField(max_length=1000)
@@ -28,10 +30,17 @@ class message(models.Model):
     date = models.DateField(default=date.today, null=True)
     wait_time = models.IntegerField(
         default=20,
-        validators=[MaxValueValidator(100), MinValueValidator(15),],blank=True
+        validators=[
+            MaxValueValidator(100),
+            MinValueValidator(15),
+        ],
+        blank=True,
     )
     tab_close = models.BooleanField(default=False, null=True, choices=BOOL_CHOICES)
-    close_time = models.IntegerField(null=True, blank=True,)
+    close_time = models.IntegerField(
+        null=True,
+        blank=True,
+    )
     interval = models.IntegerField(null=True, blank=True)
     interval_period = models.CharField(
         max_length=100, choices=TimeInterval.choices, null=True, blank=True
@@ -101,8 +110,8 @@ class message(models.Model):
                 ),
                 start_time=timezone.now(),
                 one_off=self.one_off,
-                last_run_at = timezone.now()
-            -timedelta(**{self.interval_period: self.interval}),
+                last_run_at=timezone.now()
+                - timedelta(**{self.interval_period: self.interval}),
             )
         self.save()
 
